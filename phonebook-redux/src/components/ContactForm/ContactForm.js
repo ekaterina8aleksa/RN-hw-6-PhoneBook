@@ -8,7 +8,6 @@ class ContactForm extends Component {
   state = {
     name: "",
     number: "",
-    contacts: [],
   };
 
   handelChange = (e) => {
@@ -18,13 +17,59 @@ class ContactForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
+
+    const { name, number } = this.state;
+    const { contacts } = this.props;
+
+    const isExist = contacts.some(
+      (contact) =>
+        contact.name.trim().toLowerCase() === name.trim().toLowerCase()
+    );
+    const invalide = isNaN(number);
+
+    if (name.length === 0 || number.length === 0) {
+      toast.warn(`Fill the form, please ＼(°o°)／ `);
+    } else if (isExist) {
+      toast.info(`${name} already exist (〒﹏〒) `);
+    } else if (invalide) {
+      toast.info(`${number} is invalide phone number 乁( •_• )ㄏ `);
+    } else {
+      toast.success(" (๑˙❥˙๑) You added new contact!");
+      this.props.onSubmit(this.state);
+    }
     this.reset();
   };
 
   reset = () => {
     this.setState({ name: "", number: "" });
   };
+
+  // validationContact = (name, number) => {
+  // const { contacts } = this.state;
+  // const readyContact = {
+  //     name,
+  //     number,
+  //     // id: shortid.generate(),
+  // };
+
+  // const isExist = contacts.some(
+  //     (contact) =>
+  //         contact.name.trim().toLowerCase() === name.trim().toLowerCase()
+  // );
+  // const invalide = isNaN(number);
+  //     if (isExist) {
+  //         toast.info(`${name} already exist (〒﹏〒) `);
+  //     } else if (number.length === 0 || name.length === 0) {
+  //         toast.warn(`Fill the form, please ＼(°o°)／ `);
+  //     } else if (invalide) {
+  //         toast.info(`${number} is invalide phone number 乁( •_• )ㄏ `);
+  //     } else {
+  //         toast.success(" (๑˙❥˙๑) You added new contact!");
+  //         this.setState(({ contacts }) => ({
+  //             contacts: [readyContact, ...contacts],
+  //         }));
+  //     }
+  // };
 
   render() {
     return (
@@ -66,31 +111,6 @@ class ContactForm extends Component {
     );
   }
 }
-
-const validationContact = (allContacts, name, number) => {
-  const { contacts } = this.state;
-  const readyContact = {
-    name,
-    number,
-    // id: shortid.generate(),
-  };
-  const isExist = contacts.some(
-    (contact) => contact.name.trim().toLowerCase() === name.trim().toLowerCase()
-  );
-  const invalide = isNaN(number);
-  if (isExist) {
-    toast.info(`${name} already exist (〒﹏〒) `);
-  } else if (number.length === 0 || name.length === 0) {
-    toast.warn(`Fill the form, please ＼(°o°)／ `);
-  } else if (invalide) {
-    toast.info(`${number} is invalide phone number 乁( •_• )ㄏ `);
-  } else {
-    toast.success(" (๑˙❥˙๑) You added new contact!");
-    this.setState(({ contacts }) => ({
-      contacts: [readyContact, ...contacts],
-    }));
-  }
-};
 
 const mapStateToProps = (state) => ({
   contacts: state.contacts.items,

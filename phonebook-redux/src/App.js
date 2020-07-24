@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
 import Filter from "./components/Filter";
-import { getContacts, setContacts } from "./utils/helpers";
-import styles from "./components/Phonebook.module.css";
+//import { getContacts, setContacts } from "./utils/helpers";
+// import styles from "./components/Phonebook.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
 class App extends Component {
@@ -81,7 +81,7 @@ class App extends Component {
   // };
 
   render() {
-    const { contacts } = this.state;
+    // const { contacts } = this.state;
     //const visibleContacts = this.getFilteredContacts();
 
     return (
@@ -90,11 +90,11 @@ class App extends Component {
           onSubmit={this.formListener}
           onAddContact={this.addContact}
         />
-        {contacts.length >= 2 && <Filter />}
+        <Filter />
 
         <h3>Contacts</h3>
 
-        <ContactList contacts={contacts} />
+        <ContactList />
 
         {/* {contacts.length >= 2 && (
                     <Filter value={filter} onChange={this.changeFilter} />
