@@ -42,13 +42,6 @@ const getFilteredContacts = (allContacts, filter) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//     const { filter, items } = this.state;
-//     const visibleContacts = getFilteredContacts(items, filter)
-
-//     return { contacts: visibleContacts };
-// };
-
 const mapStateToProps = ({ contacts: { items, filter } }) => ({
   contacts: getFilteredContacts(items, filter),
 });

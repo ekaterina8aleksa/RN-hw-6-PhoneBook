@@ -44,33 +44,6 @@ class ContactForm extends Component {
     this.setState({ name: "", number: "" });
   };
 
-  // validationContact = (name, number) => {
-  // const { contacts } = this.state;
-  // const readyContact = {
-  //     name,
-  //     number,
-  //     // id: shortid.generate(),
-  // };
-
-  // const isExist = contacts.some(
-  //     (contact) =>
-  //         contact.name.trim().toLowerCase() === name.trim().toLowerCase()
-  // );
-  // const invalide = isNaN(number);
-  //     if (isExist) {
-  //         toast.info(`${name} already exist (〒﹏〒) `);
-  //     } else if (number.length === 0 || name.length === 0) {
-  //         toast.warn(`Fill the form, please ＼(°o°)／ `);
-  //     } else if (invalide) {
-  //         toast.info(`${number} is invalide phone number 乁( •_• )ㄏ `);
-  //     } else {
-  //         toast.success(" (๑˙❥˙๑) You added new contact!");
-  //         this.setState(({ contacts }) => ({
-  //             contacts: [readyContact, ...contacts],
-  //         }));
-  //     }
-  // };
-
   render() {
     return (
       <>

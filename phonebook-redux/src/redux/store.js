@@ -1,6 +1,3 @@
-// import { combineReducers } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
-
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import storage from "redux-persist/lib/storage";
@@ -16,7 +13,6 @@ import {
 } from "redux-persist";
 import contactsReducer from "./contacts-reducer";
 
-// const store = createStore(rootReduser, composeWithDevTools());
 const contactsPersistConfig = {
   key: "contacts",
   storage,
@@ -31,10 +27,6 @@ const middleware = [
   }),
   logger,
 ];
-// const rootReducer = combineReducers({
-//     contacts: persistReducer(persistConfig, contactsReducer),
-// });
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: {

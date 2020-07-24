@@ -8,30 +8,10 @@ const items = createReducer([], {
     state.filter(({ id }) => id !== payload),
 });
 
-// const items = (state = [], { type, payload }) => {
-//     switch (type) {
-//         case actionTypes.ADD:
-//             return [...state, payload];
-//         case actionTypes.DELETE:
-//             return state.filter(({ id }) => id !== payload);
-//         default:
-//             return state;
-//     }
-// };
-
 const filter = createReducer("", {
   [actions.filterContact]: (_, { payload }) => payload,
 });
 
-// const filter = (state = "", { type, payload }) => {
-//     switch (type) {
-//         case [actions.filterContact]:
-//             return payload;
-
-//         default:
-//             return state;
-//     }
-// };
 export default combineReducers({
   items,
   filter,
